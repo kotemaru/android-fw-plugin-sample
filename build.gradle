@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        flatDir dirs: [
+                "../android-fw-plugin/build-tools/build/libs",
+                '../android-fw-plugin/runtime/build/outputs/aar'
+        ];
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
+        classpath 'org.kotemaru.android:build-tools'
+        classpath(group: 'org.apache.poi', name: 'poi', version: '3.13')
+        classpath(group: 'org.apache.poi', name: 'poi-ooxml', version: '3.13') {
+            exclude group: 'stax', module: 'stax-api'
+        }
+        classpath(group: 'org.apache.poi', name: 'ooxml-schemas', version: '1.1')
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        flatDir dirs: [
+                "../android-fw-plugin/build-tools/build/libs",
+                '../android-fw-plugin/runtime/build/outputs/aar'
+        ];
+    }
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
